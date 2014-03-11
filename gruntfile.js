@@ -35,6 +35,11 @@ module.exports = function(grunt) {
         files: {
           'build/platform-lite.concat.js': readManifest('build-lite.json')
         }
+      },
+      raw: {
+        files: {
+          'build/platform-raw.concat.js': readManifest('build.json')
+        }
       }
     },
     uglify: {
@@ -126,5 +131,6 @@ module.exports = function(grunt) {
   grunt.registerTask('test-build-cr', ['minify', 'stash', 'karma:buildbot', 'restore']);
   grunt.registerTask('test-buildbot', ['override-chrome-launcher', 'karma:buildbot', 'test-build-cr']);
   grunt.registerTask('build-lite', ['concat:lite']);
+  grunt.registerTask('build-raw', ['concat:raw']);
 };
 
