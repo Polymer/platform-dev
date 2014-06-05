@@ -406,9 +406,10 @@ var ShadowCSS = {
           cssText += '@media ' + rule.media.mediaText + ' {\n';
           cssText += this.scopeRules(rule.cssRules, scopeSelector);
           cssText += '\n}\n\n';
-        } else if (rule.cssText) {
-          cssText += rule.cssText + '\n\n';
+        } else if (rule.type !== CSSRule.KEYFRAMES_RULE && rule.cssText) {
+            cssText += rule.cssText + '\n\n';
         }
+
       }, this);
     }
     return cssText;
