@@ -27,6 +27,8 @@ window.logFlags = window.logFlags || {};
       n = a[i];
       if (n.name !== 'src') {
         flags[n.name] = n.value || true;
+      } else if (n.value.indexOf('?') != -1) {
+        scope.version = n.value.substring(n.value.indexOf('?') + 1);
       }
     }
   }
