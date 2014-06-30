@@ -83,12 +83,10 @@
     xhr: function(url) {
       this.requests++;
       var request = new XMLHttpRequest();
-      if (url.indexOf('?') != -1) {
-        // do nothing if query is provided
-      } else if (scope.version) {
-        url += '?' + scope.version;
-      } else if (scope.flags.debug || scope.flags.bust) {
+      if (scope.flags.debug || scope.flags.bust) {
         url += '?' + Math.random();
+      } else if (url.indexOf('?') == -1 && scope.version) {
+        url += '?' + scope.version;
       }
       request.open('GET', url, true);
       request.send();
