@@ -37,7 +37,7 @@ var urlResolver = {
   },
   resolveStyle: function(style, url) {
     url = url || style.ownerDocument.baseURI;
-    style.textContent = this.resolveCssText(style.textContent, url);
+    style.textContent = this.resolveCssText(style.textContent, url, true);
   },
   resolveCssText: function(cssText, baseUrl, keepAbsolute) {
     cssText = replaceUrlsInCssText(cssText, baseUrl, keepAbsolute, CSS_URL_REGEXP);
