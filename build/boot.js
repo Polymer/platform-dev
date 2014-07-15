@@ -61,6 +61,17 @@ window.logFlags = window.logFlags || {};
     window.HTMLImports = window.HTMLImports || {flags: {}};
     window.HTMLImports.flags.imports = flags.imports;
   }
+  
+  // The doImport flag import html files (space separated) by adding link elements to the dom head
+  if (flags.doImport) {
+    var toImport = flags.doImport.split(' ');
+    for(var i=0;i<toImport.length;i++) {
+      var link = document.createElement('link');
+      link.rel = 'import';
+      link.href = toImport[i];
+      document.head.appendChild(link);
+    }
+  }
 
   // export
   scope.flags = flags;
