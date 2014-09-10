@@ -70,6 +70,8 @@ module.exports = function(grunt) {
             '../CustomElements',
             '../HTMLImports',
             '../ShadowDOM',
+            '../URL',
+            '../WeakMap',
             '../platform-dev'
           ]
         },
