@@ -71,6 +71,7 @@ module.exports = function(grunt) {
             '../HTMLImports',
             '../ShadowDOM',
             '../URL',
+            '../WeakMap',
             '../platform-dev'
           ]
         },
