@@ -10,6 +10,37 @@
 window.Platform = window.Platform || {};
 // prepopulate window.logFlags if necessary
 window.logFlags = window.logFlags || {};
+// check compatibility
+(function (scope) {
+    var error, errors = [];
+    // check reserved words as property names
+    (function () {
+        try {
+            var object = (new Function('return {delete: 1};'))();
+            return object['delete'] === 1;
+        } catch (e) {
+            return false;
+        }
+    })() || errors.push('Reserved words as property names is not supported');
+    // check strict mode
+    (function () {
+        'use strict';
+        return !this;
+    })() || errors.push('Strict mode is not supported');
+    // check window.Window
+    if (typeof Window === 'undefined') {
+        errors.push('Window is unavailable');
+    }
+    if (errors.length === 0) {
+        scope.supported = true;
+    } else {
+        scope.supported = false;
+        console.error('Current browser cannot be supported, please visit: http://www.polymer-project.org/resources/compatibility.html');
+        error = new Error(errors.join(', '));
+        error.name = 'NotSupportedError';
+        throw error;
+    }
+})(Platform);
 // process flags
 (function(scope){
   // import
